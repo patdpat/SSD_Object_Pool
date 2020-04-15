@@ -9,13 +9,11 @@ public class Gui extends JFrame implements Observer {
 
     private Game game;
 
-    private Renderer renderer;
-
     public Gui() {
         game = new Game();
         game.addObserver(this);
 
-        renderer = new Renderer();
+        Renderer renderer = new Renderer();
         renderer.addMouseListener(new Controller());
 
         setLayout(new BorderLayout());

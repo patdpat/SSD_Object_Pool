@@ -10,27 +10,23 @@ public class Game extends Observable {
     private int height = 600;
 
     private List<Bullet> bullets;
-    private Thread mainLoop;
     private boolean alive;
 
     public Game() {
         alive = true;
-        bullets = new ArrayList<Bullet>();
-        mainLoop = new Thread() {
-            @Override
-            public void run() {
-                while(alive) {
-                    tick();
-                    setChanged();
-                    notifyObservers();
-                    try {
-                        Thread.sleep(30);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        bullets = new ArrayList<>();
+        Thread mainLoop = new Thread(() -> {
+            while (alive) {
+                tick();
+                setChanged();
+                notifyObservers();
+                try {
+                    Thread.sleep(30);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
-        };
+        });
         mainLoop.start();
     }
 
@@ -46,7 +42,7 @@ public class Game extends Observable {
     }
 
     private void cleanupBullets() {
-        List<Bullet> toRemove = new ArrayList<Bullet>();
+        List<Bullet> toRemove = new ArrayList<>();
         for(Bullet bullet : bullets) {
             if(bullet.getX() <= 0 ||
                     bullet.getX() >= width ||
