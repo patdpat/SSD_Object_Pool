@@ -21,7 +21,7 @@ public class BulletsPool {
         }
     }
 
-    public Bullet getAvailableBulletWithDirection(int x, int y, int dx, int dy) {
+    public Bullet getBullet(int x, int y, int dx, int dy) {
         if (bullets.size() == 0) {
             for (int i = 0; i < 10; i++) {
                 bullets.push(new Bullet(0, 0, 0, 0));
@@ -34,7 +34,7 @@ public class BulletsPool {
         return bullet;
     }
 
-    public void collectBullet(Bullet bullet) {
+    public void takeBullet(Bullet bullet) {
         bullets.push(bullet);
     }
 

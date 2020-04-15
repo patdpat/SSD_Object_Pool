@@ -57,7 +57,7 @@ public class Game extends Observable {
         }
         for(Bullet bullet : toRemove) {
             bullets.remove(bullet);
-            bulletPool.collectBullet(bullet);
+            bulletPool.takeBullet(bullet);
         }
     }
 
@@ -74,13 +74,13 @@ public class Game extends Observable {
     }
 
     public void burstBullets(int x, int y) {
-        bullets.add(bulletPool.getAvailableBulletWithDirection(x, y, 1, 0));
-        bullets.add(bulletPool.getAvailableBulletWithDirection(x, y, 0, 1));
-        bullets.add(bulletPool.getAvailableBulletWithDirection(x, y, -1, 0));
-        bullets.add(bulletPool.getAvailableBulletWithDirection(x, y, 0, -1));
-        bullets.add(bulletPool.getAvailableBulletWithDirection(x, y, 1, 1));
-        bullets.add(bulletPool.getAvailableBulletWithDirection(x, y, 1, -1));
-        bullets.add(bulletPool.getAvailableBulletWithDirection(x, y, -1, 1));
-        bullets.add(bulletPool.getAvailableBulletWithDirection(x, y, -1, -1));
+        bullets.add(bulletPool.getBullet(x, y, 1, 0));
+        bullets.add(bulletPool.getBullet(x, y, 0, 1));
+        bullets.add(bulletPool.getBullet(x, y, -1, 0));
+        bullets.add(bulletPool.getBullet(x, y, 0, -1));
+        bullets.add(bulletPool.getBullet(x, y, 1, 1));
+        bullets.add(bulletPool.getBullet(x, y, 1, -1));
+        bullets.add(bulletPool.getBullet(x, y, -1, 1));
+        bullets.add(bulletPool.getBullet(x, y, -1, -1));
     }
 }
